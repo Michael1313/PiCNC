@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="ManualControl">
+		<title>ManualControl</title>
+		<centered>1</centered>
+		<size>354,324</size>
+		<handler function="OnInit" entry="EVT_INIT_DIALOG" />
+		<handler function="OnClose" entry="EVT_CLOSE" />
+		<handler function="OnKeyDown" entry="EVT_KEY_DOWN" />
+		<handler function="OnKeyUp" entry="EVT_KEY_UP" />
+		<handler function="OnLeftDown" entry="EVT_LEFT_DOWN" />
+		<object class="wxSpinCtrl" name="ID_SPINCTRL1" variable="SpinCtrl1" member="yes">
+			<value>100</value>
+			<min>1</min>
+			<max>10000</max>
+			<pos>184,32</pos>
+			<size>144,33</size>
+		</object>
+		<object class="wxSpinCtrl" name="ID_SPINCTRL2" variable="SpinCtrl2" member="yes">
+			<value>100</value>
+			<min>1</min>
+			<max>10000</max>
+			<pos>184,64</pos>
+			<size>144,33</size>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+			<label>Go to</label>
+			<pos>32,8</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+			<label>X</label>
+			<pos>8,40</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+			<label>Y</label>
+			<pos>8,72</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+			<label>Z</label>
+			<pos>8,104</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
+			<label>F</label>
+			<pos>8,136</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
+			<label>Steps per unit (SPU)</label>
+			<pos>184,8</pos>
+		</object>
+		<object class="wxSpinCtrl" name="ID_SPINCTRL3" variable="SpinCtrl3" member="yes">
+			<value>100</value>
+			<min>1</min>
+			<max>10000</max>
+			<pos>184,96</pos>
+			<size>144,33</size>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
+			<value>0.000000</value>
+			<pos>32,32</pos>
+			<size>131,33</size>
+		</object>
+		<object class="wxSpinButton" name="ID_SPINBUTTON1" variable="SpinButton1" member="yes">
+			<max>100</max>
+			<pos>152,32</pos>
+			<style>wxSP_VERTICAL|wxSP_ARROW_KEYS|wxSP_WRAP</style>
+			<handler function="OnSpinButton1ChangeUp" entry="EVT_SPIN_UP" />
+			<handler function="OnSpinButton1ChangeDown" entry="EVT_SPIN_DOWN" />
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
+			<value>0.000000</value>
+			<pos>32,64</pos>
+			<size>131,33</size>
+		</object>
+		<object class="wxSpinButton" name="ID_SPINBUTTON2" variable="SpinButton2" member="yes">
+			<min>-100</min>
+			<max>100</max>
+			<pos>152,64</pos>
+			<style>wxSP_VERTICAL|wxSP_ARROW_KEYS|wxSP_WRAP</style>
+			<handler function="OnSpinButton2ChangeUp" entry="EVT_SPIN_UP" />
+			<handler function="OnSpinButton2ChangeDown" entry="EVT_SPIN_DOWN" />
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrl3" member="yes">
+			<value>0.000000</value>
+			<pos>32,96</pos>
+			<size>131,33</size>
+		</object>
+		<object class="wxSpinButton" name="ID_SPINBUTTON3" variable="SpinButton3" member="yes">
+			<min>-100</min>
+			<max>100</max>
+			<pos>152,96</pos>
+			<style>wxSP_VERTICAL|wxSP_ARROW_KEYS|wxSP_WRAP</style>
+			<handler function="OnSpinButton3ChangeUp" entry="EVT_SPIN_UP" />
+			<handler function="OnSpinButton3ChangeDown" entry="EVT_SPIN_DOWN" />
+		</object>
+		<object class="wxSpinCtrl" name="ID_SPINCTRL4" variable="SpinCtrl4" member="yes">
+			<value>100</value>
+			<min>1</min>
+			<max>10000</max>
+			<pos>32,128</pos>
+			<size>140,33</size>
+		</object>
+		<object class="wxButton" name="ID_BUTTON1" variable="Butt1" member="yes">
+			<label>Go</label>
+			<pos>32,168</pos>
+			<handler function="OnButt1Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON2" variable="Butt2" member="yes">
+			<label>SetSPU&amp;&amp;Close</label>
+			<pos>192,168</pos>
+			<handler function="OnButton2Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON3" variable="Butt3" member="yes">
+			<label>Close</label>
+			<pos>192,208</pos>
+			<handler function="OnButton3Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON4" variable="Butt4" member="yes">
+			<label>Parking</label>
+			<pos>32,208</pos>
+			<handler function="OnButt4Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
+			<label>Click on this caption and press:&#x0A;Up, Down, Left, Right, W, S, Space&#x0A;To control the machine.</label>
+			<pos>16,248</pos>
+		</object>
+	</object>
+</wxsmith>

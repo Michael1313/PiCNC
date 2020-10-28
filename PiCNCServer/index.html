@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PiCNC SETS</title>
+<style>
+.liteBox {
+	position: absolute;
+	background-color: rgba(150, 150, 150, 0.7);
+	left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+table td {
+	width: 100%;
+}
+svg {
+	width: 100%;
+	height: 100%;
+}
+path {
+	fill:rgba(30, 30, 30, 0.5);
+	stroke:#070000;stroke-width:1;
+	stroke-linejoin:round;
+	stroke-miterlimit:4;
+	stroke-dasharray:none;
+	stroke-dashoffset:0;
+	stroke-opacity:1;
+	paint-order:stroke markers fill
+}
+path:active, svg:active circle {
+	fill:rgba(151, 151, 151, 1);
+}
+circle {
+	fill:rgba(151, 151, 151, 0.33);
+	stroke:#070000;stroke-width:1;
+}
+.button {
+	cursor: default;
+	background-color: green;
+	padding: 5px 20px;
+	border-radius: 5px;
+	box-shadow: 3px 3px grey;
+	color: wheat;
+	margin-left: 13px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.button:active {
+	box-shadow: 1px 1px grey;
+}
+table {
+	table-layout:fixed;
+}
+</style>
+</head>
+<body>
+<script>
+	massege = 0;
+	x = 0;
+	y = 2;
+	z = 4;
+	sp= 6;
+	var elem = document.documentElement;
+	
+	function massegeNumber(){
+		for(i=0; i<arguments.length; i++){
+			massege &=~ (3 << arguments[i][0]);
+			massege |= (arguments[i][1] << arguments[i][0]);
+		}
+		ws.send('C' + String.fromCharCode(massege));
+	}
+window.onload=function(){
+  ws = new WebSocket("ws://"+window.location.hostname+":8888/ws");
+  ws.onmessage=function(evt){console.log(evt.data);};
+  ws.onopen=function(evt){
+    //ws.send(String.fromCharCode(12));
+  }
+document.querySelector("#button1").onclick = function(){
+	ws.send('A' + document.querySelectorAll("input[type=number]").item(0).value + '|' +
+					document.querySelectorAll("input[type=number]").item(1).value + '|' +
+					document.querySelectorAll("input[type=number]").item(2).value + '|');
+}
+document.querySelector("#button2").onclick = function(){
+	document.querySelector('.liteBox').style.display="block";
+	if(elem.requestFullscreen){
+		elem.requestFullscreen();
+	}else if(elem.webkitRequestFullscreen){
+		elem.webkitRequestFullscreen();
+	}else if(elem.mozRequestFullscreen){
+		elem.mozRequestFullscreen();
+	}else if(elem.msRequestFullscreen){
+		elem.msRequestFullscreen();
+	}
+}
+document.querySelector("#button3").onclick = function(){
+	massegeNumber([x, document.querySelector("input[name=X]:checked").value],
+					[y, document.querySelector("input[name=Y]:checked").value],
+					[z, document.querySelector("input[name=Z]:checked").value]);
+}
+	var stEl = document.createElement('style');
+	document.head.appendChild(stEl);
+	var stSheet = stEl.sheet;
+//157
+	window.onresize = function(){
+		if(document.querySelector(".liteBox").offsetHeight < 471){
+			stSheet.insertRule("td>svg {height: " + (document.querySelector(".liteBox").offsetHeight / 3 - 2) + "px}", 0);
+		}else{
+			stSheet.insertRule("td>svg {height: 100%}", 0);
+		}
+	}
+}
+window.onclose=function(){
+  ws.close();
+}
+function mExit(){
+	if(document.exitFullscreen){
+		document.exitFullscreen();
+	}else if(document.webkitExitFullscreen){
+		document.webkitExitFullscreen();
+	}else if(document.mozExitFullscreen){
+		document.mozExitFullscreen();
+	}else if(document.msExitFullscreen){
+		document.msExitFullscreen();
+	}
+}
+</script>
+<table style="width:100%">
+	<tbody>
+		<tr>
+			<td>
+				<p>X <input type="number" value="0" step="0.01"></p>
+				<p>Y <input type="number" value="0" step="0.01"></p>
+				<p>Z <input type="number" value="0" step="0.01"></p>
+				<p><span id="button1" class="button">Go to position</span></p>
+				<p><span id="button2" class="button">Manual control</span></p>
+			</td>
+			<td>
+				<table style="width: 155px;">
+					<tbody>
+						<tr>
+							<td>&nbsp;</td>
+							<td>None</td>
+							<td>Min</td>
+							<td>Max</td>
+						</tr>
+						<tr>
+							<td>X</td>
+							<td><input type="radio" name="X" value="0" checked></td>
+							<td><input type="radio" name="X" value="2"></td>
+							<td><input type="radio" name="X" value="1"></td>
+						</tr>
+						<tr>
+							<td>Y</td>
+							<td><input type="radio" name="Y" value="0" checked></td>
+							<td><input type="radio" name="Y" value="2"></td>
+							<td><input type="radio" name="Y" value="1"></td>
+						</tr>
+						<tr>
+							<td>Z</td>
+							<td><input type="radio" name="Z" value="0" checked></td>
+							<td><input type="radio" name="Z" value="2"></td>
+							<td><input type="radio" name="Z" value="1"></td>
+						</tr>
+					</tbody>
+				</table>
+				<p><span id="button3" class="button">Parking</span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="liteBox" style="display:none;">
+
+<table style="width:100%;height:100%;table-layout:fixed;" id="mainTable">
+	<tr>
+		<td ontouchstart="massegeNumber([x, 2], [y, 1]);" ontouchend="massegeNumber([x, 0], [y, 0]);"">
+			<svg
+			   viewBox="0 0 100 100"
+			   version="1.1"
+			   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+				<path
+				   transform="translate(0 -10) rotate(-135 50 50)"
+				   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+			 />
+			</svg>
+		</td>
+		<td ontouchstart="massegeNumber([y, 1]);" ontouchend="massegeNumber([y, 0]);">
+			<svg
+			   viewBox="0 0 100 100"
+			   version="1.1"
+			   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+				<path
+				   transform="translate(5) rotate(-90 50 50)"
+				   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+			 />
+			</svg>
+		</td>
+		<td ontouchstart="massegeNumber([x, 1], [y, 1]);" ontouchend="massegeNumber([x, 0], [y, 0]);">
+			<svg
+			   viewBox="0 0 100 100"
+			   version="1.1"
+			   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+				<path
+				   transform="translate(10) rotate(-45 50 50)"
+				   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+			 />
+			</svg>
+		</td>
+		<td rowspan="3">
+					<div style="height: 50%;" ontouchstart="massegeNumber([z, 1]);" ontouchend="massegeNumber([z, 0]);">
+						<svg
+						   viewBox="0 0 100 100"
+						   version="1.1"
+						   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+							<path
+							   transform="translate(5) rotate(-90 50 50)"
+							   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+						 />
+						</svg>
+					</div>
+					<div style="height: 50%;" ontouchstart="massegeNumber([z, 2]);" ontouchend="massegeNumber([z, 0]);">
+						<svg
+						   viewBox="0 0 100 100"
+						   version="1.1"
+						   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+							<path
+							   transform="translate(-7) rotate(90 50 50)"
+							   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+						 />
+						</svg>
+					</div>
+		</td>
+	</tr>
+	<tr>
+		<td ontouchstart="massegeNumber([x, 2]);" ontouchend="massegeNumber([x, 0]);">
+			<svg
+			   viewBox="0 0 100 100"
+			   version="1.1"
+			   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+				<path
+				   transform="translate(0 -10) rotate(180 50 50)"
+				   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+			 />
+			</svg>
+		</td>
+		<td ontouchstart="massege |= 0b1000000;ws.send('C' + String.fromCharCode(massege));massege &=~ 0b1000000;">
+			<svg viewBox="0 0 100 100" version="1.1">
+				<circle cx="50" cy="50" r="40" />
+				<text x="23" y="55">Spindel</text>
+			</svg>
+		</td>
+		<td ontouchstart="massegeNumber([x, 1]);" ontouchend="massegeNumber([x, 0]);">
+			<svg
+			   viewBox="0 0 100 100"
+			   version="1.1"
+			   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+				<path
+				   transform="translate(0 10)"
+				   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+			 />
+			</svg>
+		</td>
+	</tr>
+	<tr>
+		<td ontouchstart="massegeNumber([x, 2], [y, 2]);" ontouchend="massegeNumber([x, 0], [y, 0]);">
+			<svg
+			   viewBox="0 0 100 100"
+			   version="1.1"
+			   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+				<path
+				   transform="translate(-10) rotate(135 50 50)"
+				   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+			 />
+			</svg>
+		</td>
+		<td ontouchstart="massegeNumber([y, 2]);" ontouchend="massegeNumber([y, 0]);">
+			<svg
+			   viewBox="0 0 100 100"
+			   version="1.1"
+			   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+				<path
+				   transform="translate(-10) rotate(90 50 50)"
+				   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+			 />
+			</svg>
+		</td>
+		<td ontouchstart="massegeNumber([x, 1], [y, 2]);" ontouchend="massegeNumber([x, 0], [y, 0]);">
+			<svg
+			   viewBox="0 0 100 100"
+			   version="1.1"
+			   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+				<path
+				   transform="translate(0 10) rotate(45 50 50)"
+				   d="M 73.655293,43.000004 C 73.655292,57.690712 28.622549,83.690379 15.900022,76.345024 3.1774958,68.99967 0.1774959,17.000337 15.900023,9.6549831 28.622549,2.3096289 73.655293,28.309295 73.655293,43.000004 Z"
+			 />
+			</svg>
+		</td>
+	</tr>
+</table>
+<svg ontouchend="document.querySelector('.liteBox').style.display='none';mExit();"
+	style="position:absolute;right:2px;top:2px;width:2.5%;height: auto;"
+	viewBox="0 0 100 100">
+	<path
+		style="fill:none;stroke:#FF0000;stroke-width:10px;"
+		d="M 0,0 100,100"
+	/>
+	<path
+		style="fill:none;stroke:#FF0000;stroke-width:10px;"
+		d="M 100,0 0,100"
+	/>
+</svg>
+</div>
+</body>
+</html>

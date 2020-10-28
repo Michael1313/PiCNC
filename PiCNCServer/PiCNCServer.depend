@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1577695386 source:/home/pi/Desktop/netlink/user/PiCNCServer/main.cpp
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<sys/socket.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<sstream>
+	<pthread.h>
+	"ws.h"
+	<fcntl.h>
+	"ws_func.h"
+	"gcomm.h"
+
+1602313872 /home/pi/Desktop/netlink/user/PiCNCServer/ws.h
+
+1602340930 /home/pi/Desktop/netlink/user/PiCNCServer/ws_func.h
+	<semaphore.h>
+
+1577695697 /home/pi/Desktop/netlink/user/PiCNCServer/gcomm.h
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PiCNC" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/PiCNC" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/PiCNC" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`/usr/bin/wx-config --cxxflags`" />
+		</Compiler>
+		<Linker>
+			<Add option="`/usr/bin/wx-config --libs`" />
+			<Add library="GLEW" />
+			<Add library="GL" />
+			<Add library="GLU" />
+			<Add library="glut" />
+		</Linker>
+		<Unit filename="GCodeCreator.cpp" />
+		<Unit filename="GCodeCreator.h" />
+		<Unit filename="ManualControl.cpp" />
+		<Unit filename="ManualControl.h" />
+		<Unit filename="PiCNCApp.cpp" />
+		<Unit filename="PiCNCApp.h" />
+		<Unit filename="PiCNCMain.cpp" />
+		<Unit filename="PiCNCMain.h" />
+		<Unit filename="wxsmith/GCodeCreator.wxs" />
+		<Unit filename="wxsmith/ManualControl.wxs" />
+		<Unit filename="wxsmith/PiCNCframe.wxs" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<debugger />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="PiCNCApp.cpp" main="PiCNCFrame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/PiCNCframe.wxs" src="PiCNCMain.cpp" hdr="PiCNCMain.h" fwddecl="0" i18n="1" name="PiCNCFrame" language="CPP" />
+					<wxDialog wxs="wxsmith/ManualControl.wxs" src="ManualControl.cpp" hdr="ManualControl.h" fwddecl="0" i18n="1" name="ManualControl" language="CPP" />
+					<wxDialog wxs="wxsmith/GCodeCreator.wxs" src="GCodeCreator.cpp" hdr="GCodeCreator.h" fwddecl="0" i18n="1" name="GCodeCreator" language="CPP" />
+				</resources>
+			</wxsmith>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
