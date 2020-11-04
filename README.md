@@ -13,6 +13,7 @@
 <img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCManualControl.jpg" alt="raspberry pi CNC machine"></p>
 <p><b>Raspberry pi pin out</b></p>
 <pre>
+
 XStep 19
 XDir  13
 XMin  6
