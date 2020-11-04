@@ -11,3 +11,22 @@
 <img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCServer.jpg" alt="raspberry pi CNC machine"></p>
 <p><b>PiCNCServer (mobile) web interface interface</b><br>
 <img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCManualControl.jpg" alt="raspberry pi CNC machine"></p>
+<p><b>Raspberry pi pin out</b></p>
+<pre>
+XStep 19
+XDir  13
+XMin  6
+XMax  5
+
+YStep 16
+YDir  12
+YMin  7
+YMax  8
+
+ZStep 11
+ZDir  9
+ZMin  10
+ZMax  22
+
+Spdl  18
+</pre>
