@@ -8,6 +8,6 @@
 <p><b>PiCNCEngraver interface</b><br>
 <img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCEngraver.png" alt="raspberry pi CNC machine"></p>
 <p><b>PiCNCServer web interface</b><br>
-<img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCManualControl.jpg" alt="raspberry pi CNC machine"></p>
-<p><b>PiCNCServer web interface interface</b><br>
 <img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCServer.jpg" alt="raspberry pi CNC machine"></p>
+<p><b>PiCNCServer web interface interface</b><br>
+<img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCManualControl.jpg" alt="raspberry pi CNC machine"></p>
