@@ -38,6 +38,8 @@ Spdl  18
   <code>cd /package folder</code><br>
   3. Make<br>
   <code>dpkg -i PiCNC.deb</code><br>
+  <i>to remove PiCNC user space programms mack:</i><br>
+  <i><code>dpkg -r PiCNC</code></i><br>
   By default the PiCNCServer installing in "/usr/bin" directory. And You can run the server with the icon in main manu. Or start the server automaticly at the boot time, please folove <a href="https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/">this guide.</a>
 <h3>Kernel space</h3>
 Today the project does not support the latest version of the kernel so there is no chance that this module is right for you. In any case, you can compile the module yourself.<br>
@@ -50,3 +52,4 @@ To automatically load the module while booting the operating system, follow thes
 <code>cp /module/folder/picnc.ko /lib/modules/(uname -r)</code><br>
 3. cd to "/lib/modules/(uname -r)" and make:<br>
 <code>depmod -a</code><br>
+If you are interested in this project and you have ideas for its further development, please write to me by e-mail mbajor1313@gmail.com.
