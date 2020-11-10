@@ -31,3 +31,12 @@ ZMax  22
 
 Spdl  18
 </pre>
+<h2>Installation</h2>
+<h3>User space</h3>
+  1. Download installation package.
+  2. Open a terminal and go to package folder.
+  <code>cd /package folder</code>
+  3. Make
+  <code>dpkg -i PiCNC.deb</code>
+  By default the PiCNCServer installing in "/usr/bin" directory. And You can run the server with the icon in main manu. Or start the server automaticly at the boot time, please folove <a href="https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/">this guide.</a>
+<h3>Kernel space</h3>
