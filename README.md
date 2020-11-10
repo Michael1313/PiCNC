@@ -33,10 +33,20 @@ Spdl  18
 </pre>
 <h2>Installation</h2>
 <h3>User space</h3>
-  1. Download installation package.
-  2. Open a terminal and go to package folder.
-  <code>cd /package folder</code>
-  3. Make
-  <code>dpkg -i PiCNC.deb</code>
+  1. Download <a href="https://github.com/Michael1313/PiCNC/releases/tag/v1.0-1">installation package.</a><br>
+  2. Open a terminal and go to package folder.<br>
+  <code>cd /package folder</code><br>
+  3. Make<br>
+  <code>dpkg -i PiCNC.deb</code><br>
   By default the PiCNCServer installing in "/usr/bin" directory. And You can run the server with the icon in main manu. Or start the server automaticly at the boot time, please folove <a href="https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/">this guide.</a>
 <h3>Kernel space</h3>
+Today the project does not support the latest version of the kernel so there is no chance that this module is right for you. In any case, you can compile the module yourself.<br>
+To automatically load the module while booting the operating system, follow these steps:<br>
+1. Add module name (picnc.ko) to:<br>
+/etc/modules<br>
+<code>sudo nano /etc/modules</code><br>
+2. Add "picnc.ko" file to<br>
+/lib/modules/(uname -r)<br>
+<code>cp /module/folder/picnc.ko /lib/modules/(uname -r)</code><br>
+3. cd to "/lib/modules/(uname -r)" and make:<br>
+<code>depmod -a</code><br>
