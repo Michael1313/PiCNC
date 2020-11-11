@@ -6,11 +6,11 @@
 <p><b>PiCNC interface</b><br>
 <img src="screenshots/PiCNC.png" alt="raspberry pi CNC machine"></p>
 <p><b>PiCNCEngraver interface</b><br>
-<img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCEngraver.png" alt="raspberry pi CNC machine"></p>
+<img src="screenshots/PiCNCEngraver.png" alt="raspberry pi CNC machine"></p>
 <p><b>PiCNCServer (mobile) web interface</b><br>
-<img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCServer.jpg" alt="raspberry pi CNC machine"></p>
+<img src="screenshots/PiCNCServer.jpg" alt="raspberry pi CNC machine"></p>
 <p><b>PiCNCServer (mobile) web interface interface</b><br>
-<img src="https://github.com/Michael1313/PiCNC/blob/main/screenshots/PiCNCManualControl.jpg" alt="raspberry pi CNC machine"></p>
+<img src="screenshots/PiCNCManualControl.jpg" alt="raspberry pi CNC machine"></p>
 <p><b>Raspberry pi pin out</b></p>
 <pre>
 
